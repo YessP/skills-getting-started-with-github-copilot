@@ -20,11 +20,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        // Genera la lista de participantes dinámicamente
+        let participantsList = "";
+        details.participants.forEach(participant => {
+          participantsList += `<li>${participant.name || participant}</li>`;
+        });
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <div class="participants">
+        <h5>Participantes:</h5>
+        <ul>${participantsList} </ul>
+      </div>
         `;
 
         activitiesList.appendChild(activityCard);
